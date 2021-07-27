@@ -1,0 +1,101 @@
+/* 
+// variables.scss
+*/
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+// @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300&display=swap');
+
+// Color variables
+$white: #fff;
+$gray-100: #f8f9fb;
+$gray-200: #eff1f5;
+$gray-300: #e2e7f1;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #4b4b5a;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+$footer: #f8f6f6;
+$bluis: #9ebafd;
+$light-rose: #ff9894;
+$golden: #f7af6d;
+$primary: #2753ff;
+$purple: #a369ff;
+$success: #2ac297;
+$info: #56c6e6;
+$warning: #ffbb13;
+$danger: #f43958;
+$dark: #29344a;
+$light: #fbfbfb;
+$body-bg: #ffffff;
+$pexful: #00a5ef;
+$pexful-2: #46127b;
+
+$bg-counter: #5e62ff;
+$footer-bg: #343a40;
+
+$gradiant-bluis: linear-gradient(to right top, #9ebafd, #f1fafc);
+$gradiant-purple: linear-gradient(to right top, #a49cf4, #dacafe);
+$gradiant-rose: linear-gradient(to right top, #ffb3e8, #fcecf1);
+$gradiant-green: linear-gradient(to left top, #81e4b1, #e4fab5);
+$gradiant-orange: linear-gradient(to right, #ffc187, #ffefbb);
+$gradiant-light-orange: linear-gradient(to right, #ff9894, #ffd5bf);
+// $gradiant-violet: linear-gradient(to right, #9d50bb, #6e48aa);
+$gradiant-violet: linear-gradient(to right, #a39cf4, #dfcbfd);
+$gradiant-mix: linear-gradient(to right, #83a4d4, #b6fbff);
+$gradiant-text-purple: linear-gradient(#a49cf4, #dacafe);
+$gradiant-text-rose: linear-gradient(#ffb3e8, #f8cbdc);
+$gradiant-text-green: linear-gradient(#81e4b1, #e4fab5);
+$gradiant-text-orange: linear-gradient(#ffc187, #ffefbb);
+$gradiant-text-dark-orange: linear-gradient(#f6b352, #ffc187);
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $gray-600,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "dark": $dark,
+  "light": $light,
+  "body-bg": $body-bg,
+  "black": $black,
+  "white": $white,
+  "golden": $golden,
+  "pexful": $pexful,
+);
+
+$gradiant-text-colors: (
+  "purple": $gradiant-text-purple,
+  "rose": $gradiant-text-rose,
+  "orange": $gradiant-text-orange,
+  "green": $gradiant-text-green,
+  "dark-orange": $gradiant-text-dark-orange,
+);
+
+$display-light: block;
+
+$display-dark: none;
+
+$box-shadow-sm: 0 0 0.25rem rgba($gray-700, 0.05);
+$box-shadow: 0 0.2rem 0.6rem rgba($gray-900, 0.05);
+$box-shadow-lg: 0 0rem 2rem rgba($black, 0.12);
+
+$border-radius-lg: 14px;
+
+// Font
+$font-primary: "Open Sans", sans-serif;
+$font-secondary: "Assistant", sans-serif;
+$font-fancy: "Playfair Display";
+$font-dashboard: "Kanit", sans-serif;
+$font-jura: "Jura";
+$font-montserrat: "Montserrat", sans-serif;
+$dm-sans: "DM Sans", sans-serif;
+
+$loader-color: $black;

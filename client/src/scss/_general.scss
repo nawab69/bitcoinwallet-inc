@@ -1,0 +1,54 @@
+/* 
+// 1. General
+*/
+
+a {
+  text-decoration: none !important;
+  outline: none;
+  color: $dark;
+  transition: all 0.2s;
+  &:hover {
+    color: $golden;
+  }
+}
+body {
+  font-family: $font-primary;
+  color: $dark;
+  background: $body-bg;
+  font-size: 15px;
+}
+p {
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-secondary;
+  font-weight: 600;
+}
+.head {
+  font-family: $font-fancy;
+  font-size: 3rem;
+}
+.borderBottom {
+  padding-bottom: 7px;
+}
+.borderBottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+  right: 0;
+  border-top: 3px solid rgb(161, 75, 75);
+  width: 4rem;
+  z-index: 1;
+}
+
+.dashboard {
+  font-family: $dm-sans;
+  background: rgb(229, 253, 255);
+}

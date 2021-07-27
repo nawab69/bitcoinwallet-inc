@@ -1,0 +1,56 @@
+/* 
+// 06.Loader
+*/
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $light;
+    z-index: 9999999;
+    transition: all 0.4s;
+    visibility: visible;
+    opacity: 1;
+
+    #status {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%);
+    }
+}
+
+.multicone-loader{
+      height: auto;
+      width: 320px;
+
+      path{
+            fill: transparent;
+            stroke-width: 10;
+            stroke: $loader-color;
+            stroke-dasharray:1340;
+            stroke-dashoffset:1340;
+            animation: multicone-animation 5s linear infinite;
+      }
+
+}
+
+@keyframes multicone-animation {
+      0%{
+            stroke-dashoffset: 1340;
+      }
+      80%{
+            fill: transparent;
+            stroke-dashoffset: 0;
+      }
+      90%{
+            fill: $loader-color;
+            stroke-dashoffset: 0;
+      }
+      100%{
+            fill: $loader-color;
+            stroke-dashoffset: 0;
+      }
+}

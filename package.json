@@ -1,0 +1,21 @@
+{
+  "name": "escrow-mern",
+  "version": "1.0.0",
+  "description": "A escrow Dapp",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd backend && yarn && yarn start",
+    "heroku-postbuild": "cd client && yarn && yarn build",
+    "client": "cd client && yarn && yarn start",
+    "dev": "concurrently \"yarn start\" \"yarn client\""
+  },
+  "author": "nawab69",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    
+    "concurrently": "^6.2.0"
+    
+  }
+}

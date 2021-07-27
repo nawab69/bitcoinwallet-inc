@@ -1,0 +1,55 @@
+/* 
+// 09. Service
+*/
+
+// service
+.service-box {
+    .service-box-content {
+        position: relative;
+        z-index: 1;
+    }
+    .service-icon {
+        
+        background-color: $gray-200;
+        border-radius: 30% 70% 70% 30% / 30% 50% 50% 30%;
+        &.service-bg-1{
+            background: $gradiant-rose;
+        }
+        &.service-bg-2{
+            background: $gradiant-green;
+        }
+        &.service-bg-3{
+            background: $gradiant-light-orange;
+        }
+        &.service-bg-4{
+            background: $gradiant-bluis;
+        }
+        &.service-bg-5{
+            background: $gradiant-violet;
+        }
+        &.service-bg-6{
+            background: $gradiant-mix;
+        }
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: rgba($gray-200, 0.35);
+        // background: $gradiant-primary;
+        border-radius: 78% 22% 22% 78% / 50% 22% 22% 50%;
+        transform: scale(0) rotate(-50deg);
+        transition: all 0.5s;
+    }
+    &:hover, &.active {
+        &:after {
+            transform: scale(1) rotate(0deg);
+        }
+        // &:before {
+        //     transform: scale(1) rotate(-25deg);
+        // }
+    }
+}
