@@ -18,8 +18,11 @@ const Profile = () => {
       <NavBar />
       <div className="w-full min-h-screen dashboard">
         <div className="mx-auto py-24 px-24">
-          <div className="grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-2 gap-5">
-            <div className="bg-white w-full h-auto row-span-2 p-8">
+          <div className="alert alert-warning">
+            This Section is under Developement
+          </div>
+          <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
+            <div className="bg-white w-full h-auto p-4">
               {/* user details here -----------------------------------------*/}
               <div className="w-full overflow-auto">
                 <h1 className="py-2">User Details</h1>
@@ -38,22 +41,7 @@ const Profile = () => {
                       </span>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="table-list-2">Total Trades</td>
-                    <td class="table-list-2 ">12</td>
-                  </tr>
-                  <tr>
-                    <td class="table-list-2">Completed Trades</td>
-                    <td class="table-list-2 ">5</td>
-                  </tr>
                 </table>
-
-                <div className="my-5 gap-4">
-                  <div className="bg-white rounded-lg w-48 h-32 p-4">
-                    <h3 className="text-xl">Average Rating</h3>
-                    <h1 className="font-bold">4.3</h1>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -187,144 +175,6 @@ const Profile = () => {
                   </div>
                 </div>
               </form>
-            </div>
-
-            <div className="bg-white w-auto flex flex-col lg:flex-row lg:col-span-2 h-auto p-8 gap-4">
-              {/* Review section ------------------------------------------- */}
-              <div className=" lg:w-1/2 lg:h-64 h-auto">
-                <h1 className="text-2xl">Review as Buyer</h1>
-                <hr className="bg-gray-500" />
-
-                <div className="flex py-2">
-                  {" "}
-                  {/*review card------------------- */}
-                  <div className="h-8 w-8 mr-4 rounded-full bg-gray-300 text-white text-lg flex justify-center items-center">
-                    N
-                  </div>
-                  <div>
-                    <h3
-                      className="font-bold flex items-center"
-                      style={{ fontSize: 16 }}
-                    >
-                      nawab69{" "}
-                      <span className="mx-1">
-                        <FaStar className="text-yellow-400 text-sm" />
-                      </span>
-                      <span className="text-yellow-400 text-sm font-bold">
-                        5
-                      </span>
-                    </h3>
-                    <p className="text-gray-500 text-sm mb-1">
-                      {" "}
-                      🇺🇸 United States
-                    </p>
-                    <p className="text-sm">
-                      Outstanding!!! very brilliant developer, he delivers the
-                      best!
-                    </p>
-                    <p className="text-gray-400 text-sm">Published 3hrs ago</p>
-                  </div>
-                </div>
-
-                <div className="flex py-2">
-                  {" "}
-                  {/*review card------------------- */}
-                  <div className="h-8 w-8 mr-4 rounded-full bg-gray-300 text-white text-lg flex justify-center items-center">
-                    S
-                  </div>
-                  <div>
-                    <h3
-                      className="font-bold flex items-center"
-                      style={{ fontSize: 16 }}
-                    >
-                      shofiqshoweb23
-                      <span className="mx-1">
-                        <FaStar className="text-yellow-400 text-sm" />
-                      </span>
-                      <span className="text-yellow-400 text-sm font-bold">
-                        5
-                      </span>
-                    </h3>
-                    <p className="text-gray-500 text-sm mb-1"> 🇺🇸 UK</p>
-                    <p className="text-sm">Very good job, always impressed!!</p>
-                    <p className="text-gray-400 text-sm">
-                      Published 3weeks ago
-                    </p>
-                  </div>
-                </div>
-                <hr className="bg-gray-500" />
-                <a href="#" className="text-sm font-bold text-blue-400">
-                  + See more
-                </a>
-              </div>
-
-              <div className="lg:w-1/2  lg:h-64 h-auto">
-                <h1 className="text-2xl">Review as Seller</h1>
-                <hr className="bg-gray-500" />
-
-                <div className="flex py-2">
-                  {" "}
-                  {/*review card------------------- */}
-                  <div className="h-8 w-8 mr-4 rounded-full bg-gray-300 text-white text-lg flex justify-center items-center">
-                    N
-                  </div>
-                  <div>
-                    <h3
-                      className="font-bold flex items-center"
-                      style={{ fontSize: 16 }}
-                    >
-                      nawab69
-                      <span className="mx-1">
-                        <FaStar className="text-yellow-400 text-sm" />
-                      </span>
-                      <span className="text-yellow-400 text-sm font-bold">
-                        5
-                      </span>
-                    </h3>
-                    <p className="text-gray-500 text-sm mb-1">
-                      {" "}
-                      🇺🇸 United States
-                    </p>
-                    <p className="text-sm">
-                      Outstanding!!! very brilliant developer, he delivers the
-                      best!
-                    </p>
-                    <p className="text-gray-400 text-sm">Published 3hrs ago</p>
-                  </div>
-                </div>
-
-                <div className="flex py-2">
-                  {" "}
-                  {/*review card------------------- */}
-                  <div className="h-8 w-8 mr-4 rounded-full bg-gray-300 text-white text-lg flex justify-center items-center">
-                    S
-                  </div>
-                  <div>
-                    <h3
-                      className="font-bold flex items-center"
-                      style={{ fontSize: 16 }}
-                    >
-                      shofiqshoweb23
-                      <span className="mx-1">
-                        <FaStar className="text-yellow-400 text-sm" />
-                      </span>
-                      <span className="text-yellow-400 text-sm font-bold">
-                        5
-                      </span>
-                    </h3>
-                    <p className="text-gray-500 text-sm mb-1"> 🇺🇸 UK</p>
-                    <p className="text-sm">Very good job, always impressed!!</p>
-                    <p className="text-gray-400 text-sm">
-                      Published 3weeks ago
-                    </p>
-                  </div>
-                </div>
-
-                <hr className="bg-gray-500" />
-                <a href="#" className="text-sm font-bold text-blue-400">
-                  + See more
-                </a>
-              </div>
             </div>
           </div>
         </div>

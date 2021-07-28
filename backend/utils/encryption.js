@@ -10,17 +10,14 @@ export const encryptPrivateKey = (privateKey, password) => {
 };
 
 export const decryptPrivateKey = (encryptedPrivateKey, password) => {
-  try{
+  try {
     const key = crypto.createHash("md5").update(password).digest("hex");
     const iv = Buffer.from(key, "hex");
     const decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
     let decrypted = decipher.update(encryptedPrivateKey, "hex", "utf-8");
     decrypted += decipher.final("utf-8");
     return decrypted;
-  }catch(e){
-    throw Error('Invalid Password');
+  } catch (e) {
+    throw Error("Invalid Password");
   }
-  
 };
-
-

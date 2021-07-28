@@ -23,7 +23,7 @@ const NavBar = () => {
     e.preventDefault();
     console.log(history);
     dispatch(logout());
-    history.push("/");
+    history.push("/login");
   };
 
   return (
@@ -34,20 +34,23 @@ const NavBar = () => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center w-full">
                 <div className="flex-shrink-0">
-                  <img
+                  {/* <img
                     className="h-12 w-12"
                     src={`${process.env.PUBLIC_URL}/assets/images/icons/logo.png`}
                     alt="EscrowTrade"
-                  />
+                  /> */}
+                  <h3 className="text-3xl text-indigo-500 font-bold">
+                    Bitcoin Wallet Inc
+                  </h3>
                 </div>
                 <div className="hidden md:flex w-full">
                   <div className="flex items-baseline space-x-6 flex-grow-1 justify-center">
-                    <Link
-                      to="/"
+                    <a
+                      href="/"
                       className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Home
-                    </Link>
+                    </a>
 
                     <Link
                       to="/wallet"
@@ -56,12 +59,6 @@ const NavBar = () => {
                       Wallet
                     </Link>
 
-                    <Link
-                      to="/trades"
-                      className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      Trades
-                    </Link>
                     <Link
                       to="/profile"
                       className="text-gray-700 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -134,17 +131,22 @@ const NavBar = () => {
               <div className="md:hidden" id="mobile-menu">
                 <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                   <Link
+                    to="/"
+                    className="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Home
+                  </Link>
+                  <Link
                     to="/wallet"
                     className="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
                     Wallet
                   </Link>
-
                   <Link
-                    to="/trades"
+                    to="/profile"
                     className="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
-                    Trades
+                    Profile
                   </Link>
                 </div>
               </div>

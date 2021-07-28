@@ -11,6 +11,7 @@ import axios from "axios";
 import CoinGecko from "coingecko-api";
 import connectDB from "../connectDB.js";
 import Wallet from "../models/Wallet.js";
+import { sendBtc } from "../utils/bitcoin.js";
 const CoinGeckoClient = new CoinGecko();
 
 export const getWallet = expressAsyncHandler(async (req, res) => {
@@ -19,6 +20,7 @@ export const getWallet = expressAsyncHandler(async (req, res) => {
   const bnbBalance = await userBalance(user._id, "bnb");
   const usdtBalance = await userBalance(user._id, "usdt");
   const busdBalance = await userBalance(user._id, "busd");
+  console.log(busdBalance);
 
   const addresses = await Wallet.findOne({ user: user._id });
 
@@ -26,7 +28,7 @@ export const getWallet = expressAsyncHandler(async (req, res) => {
 
   try {
     const btcData = await axios.get(
-      "https://chain.so/api/v2/get_address_balance/btctest/mnuNFddvNjbwmfbP3aqVGzVW89PGDDtDRF"
+      `https://chain.so/api/v2/get_address_balance/btctest/${addresses.btcWallet.address}`
     );
 
     btcBalance = btcData.data.data["confirmed_balance"];
@@ -62,6 +64,7 @@ export const getWallet = expressAsyncHandler(async (req, res) => {
       balance: btcBalance,
       usd: price.data?.bitcoin.usd * btcBalance,
       address: addresses.btcWallet.address,
+      decimal: 8,
     },
     {
       name: "ethereum",
@@ -112,6 +115,10 @@ export const sendCrypto = expressAsyncHandler(async (req, res) => {
   let trx;
 
   switch (currency) {
+    case "btc":
+      trx = await sendBtc(user._id, recipient, password, amount);
+      break;
+
     case "eth":
       trx = await transferEth(user._id, recipient, password, amount);
       break;

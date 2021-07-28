@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BALANCE_RESET } from "../types/tradeTypes";
 import {
   FORGOT_PASS_FAIL,
   FORGOT_PASS_REQUEST,
@@ -76,6 +77,9 @@ export const logout = () => async (dispatch) => {
   });
   dispatch({
     type: USER_DETAILS_RESET,
+  });
+  dispatch({
+    type: BALANCE_RESET,
   });
   //  dispatch({
   //          type: ORDER_LIST_RESET

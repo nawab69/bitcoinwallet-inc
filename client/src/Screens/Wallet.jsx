@@ -23,36 +23,6 @@ const Wallet = () => {
     if (!balances) dispatch(Balances());
     console.log(balances);
   }, [balances]);
-  const cards = [
-    {
-      marketPrice: 0,
-      name: "Ethereum",
-      currency: "eth",
-      currentAmount: 0,
-      image: "eth",
-    },
-    {
-      marketPrice: 0,
-      name: "Binance",
-      currency: "bnb",
-      currentAmount: 0,
-      image: "bnb",
-    },
-    {
-      marketPrice: 0,
-      name: "Tether Token",
-      currency: "usdt",
-      currentAmount: 0,
-      image: "usdt",
-    },
-    {
-      marketPrice: 0,
-      name: "Binance USD",
-      currency: "busd",
-      currentAmount: 0,
-      image: "busd",
-    },
-  ];
 
   const renderWalletCard = () => {
     return balances?.map((card) => {
@@ -83,7 +53,8 @@ const Wallet = () => {
               <p className="m-0 p-0">Current Balance</p>
               <h3>
                 <strong style={{ textTransform: "uppercase" }}>
-                  {Number(card.balance).toFixed(4)} {card.currency}
+                  {Number(card.balance).toFixed(card.decimal ?? 4)}&nbsp;
+                  {card.currency}
                 </strong>
               </h3>
               <p className="-m-1">~{Number(card.usd).toFixed(4)}&nbsp;USD</p>
@@ -114,6 +85,10 @@ const Wallet = () => {
       <NavBar />
       <div className="w-full min-h-screen dashboard">
         <div className="container pt-24">
+          <div className="alert alert-warning">
+            Bitcoin network is running on Testnet. Don't Send any BTC from main
+            net. This is for testing perpose only{" "}
+          </div>
           <div className="flex flex-row flex-wrap justify-around">
             {renderWalletCard()}
           </div>

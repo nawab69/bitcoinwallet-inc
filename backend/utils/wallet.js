@@ -3,21 +3,27 @@ import Wallet from "../models/Wallet.js";
 import User from "../models/User.js";
 import { decryptPrivateKey, encryptPrivateKey } from "./encryption.js";
 import { ERC20 } from "../contracts/contracts.js";
-import { BUSD_CONTRACT, USDT_CONTRACT } from "../Constants.js";
+import {
+  BSC_RPC,
+  ETH_RPC,
+  BUSD_CONTRACT,
+  USDT_CONTRACT,
+} from "../Constants.js";
 import BigNumber from "bignumber.js";
 import { generateRandomAddress } from "./bitcoin.js";
 
 // constatnts
 
-const bnbRpc = "http://localhost:7545";
-const ethRpc = "http://localhost:7545";
+const bnbRpc = BSC_RPC;
+const ethRpc = ETH_RPC;
 
 const web3 = new Web3(new Web3.providers.HttpProvider(ethRpc));
 const bnb = new Web3(new Web3.providers.HttpProvider(bnbRpc));
 const networkId = await web3.eth.net.getId();
 const bnbNetworkId = await bnb.eth.net.getId();
+console.log({ networkId, bnbNetworkId });
 const usdt = new web3.eth.Contract(ERC20, USDT_CONTRACT);
-const busd = new web3.eth.Contract(ERC20, BUSD_CONTRACT);
+const busd = new bnb.eth.Contract(ERC20, BUSD_CONTRACT);
 
 const transfer = async (
   addressFrom,
@@ -76,6 +82,7 @@ const usdtBalance = async (address) => {
 
 const busdBalance = async (address) => {
   const balance = await busd.methods.balanceOf(address).call();
+  console.log(balance);
   const decimal = await busd.methods.decimals().call();
   return balance / Math.pow(10, decimal);
 };
@@ -114,7 +121,7 @@ export const transferEth = async (userId, addressTo, password, value) => {
   return await transfer(
     address,
     addressTo,
-    "bnb",
+    "eth",
     value,
     encryptedPrivateKey,
     password

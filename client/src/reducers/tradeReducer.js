@@ -2,6 +2,7 @@ import {
   BALANCE_FETCH_FAIL,
   BALANCE_FETCH_REQUEST,
   BALANCE_FETCH_SUCCESS,
+  BALANCE_RESET,
   CHANGE_TRADE_FAIL,
   CHANGE_TRADE_REQUEST,
   CHANGE_TRADE_RESET,
@@ -37,12 +38,18 @@ export const singleTrade = (state = {}, action) => {
 
 export const Trades = (state = {}, action) => {
   // const { trades, page, pages } = action.payload;
-  console.log(action.payload)
+  console.log(action.payload);
   switch (action.type) {
     case TRADE_FETCH_REQUEST:
       return { loading: true };
     case TRADE_FETCH_SUCCESS:
-      return { loading: false, success: true, trades: action.payload.trades, page: action.payload.page, pages: action.payload.pages};
+      return {
+        loading: false,
+        success: true,
+        trades: action.payload.trades,
+        page: action.payload.page,
+        pages: action.payload.pages,
+      };
     case TRADE_FETCH_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -58,11 +65,12 @@ export const BalancesReducer = (state = {}, action) => {
       return { loading: false, success: true, balances: action.payload };
     case BALANCE_FETCH_FAIL:
       return { loading: false, error: action.payload };
+    case BALANCE_RESET:
+      return {};
     default:
       return state;
   }
 };
-
 
 export const TRANSFER = (state = {}, action) => {
   switch (action.type) {
@@ -73,7 +81,7 @@ export const TRANSFER = (state = {}, action) => {
     case TRANSFER_FAIL:
       return { loading: false, error: action.payload };
     case TRANSFER_RESET:
-      return {}
+      return {};
     default:
       return state;
   }
@@ -89,7 +97,11 @@ export const singleTradeDetails = (state = {}, action) => {
     case SINGLE_TRADE_REQUEST:
       return { loading: true };
     case SINGLE_TRADE_SUCCESS:
-      return { loading: false, success: true, singleTradeDetails: action.payload };
+      return {
+        loading: false,
+        success: true,
+        singleTradeDetails: action.payload,
+      };
     case SINGLE_TRADE_FAIL:
       return { loading: false, error: action.payload };
     case SINGLE_TRADE_RESET:
@@ -98,7 +110,6 @@ export const singleTradeDetails = (state = {}, action) => {
       return state;
   }
 };
-
 
 export const statusReducer = (state = {}, action) => {
   switch (action.type) {
@@ -114,4 +125,3 @@ export const statusReducer = (state = {}, action) => {
       return state;
   }
 };
-

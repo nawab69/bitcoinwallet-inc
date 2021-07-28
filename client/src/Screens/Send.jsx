@@ -7,7 +7,7 @@ import { Button } from "../component/dashboard";
 const Send = ({ match }) => {
   const [state, setstate] = useState({ currency: match.params.slug });
   const dispatch = useDispatch();
-  const currencies = ["eth", "bnb", "usdt", "busd"];
+  const currencies = ["btc", "eth", "bnb", "usdt", "busd"];
   const { success, loading, error } = useSelector((state) => state.transfer);
   const renderCurrency = () => {
     return currencies.map((coin) => (
@@ -16,7 +16,7 @@ const Send = ({ match }) => {
         selected={coin === state.currency}
         className="form-control"
       >
-        {coin}
+        {coin.toUpperCase()}
       </option>
     ));
   };
@@ -24,8 +24,8 @@ const Send = ({ match }) => {
   const handleClick = (e) => {
     e.preventDefault();
     const { recipient, amount, currency, password } = state;
+    console.log({ recipient, amount, currency, password });
     dispatch(TRANSFER(recipient, currency, amount, password));
-    // alert(amount);
   };
 
   useEffect(() => {

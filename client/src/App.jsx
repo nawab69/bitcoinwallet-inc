@@ -41,7 +41,7 @@ function App() {
           <UserRoute path="/send/:slug" exact component={Send} />
           <UserRoute path="/profile" exact component={Profile} />
           <UserRoute path="/receive/:slug" exact component={Receive} />
-          <Route path="/" exact component={Home} />
+          {/* <Route path="/" exact component={Home} /> */}
         </Switch>
       </Router>
     </>

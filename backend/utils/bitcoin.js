@@ -2,9 +2,7 @@ import bitcore from "bitcore-lib";
 import axios from "axios";
 import Wallet from "../models/Wallet.js";
 import { decryptPrivateKey } from "./encryption.js";
-import connectDB from "../connectDB.js";
-
-connectDB();
+import sb from "satoshi-bitcoin";
 
 // Generate random Private key and address
 
@@ -45,7 +43,7 @@ const fetchUtxo = async (address) => {
         vout: e["output_no"],
         address: address,
         script: e["script_hex"],
-        satoshis: e["value"] * 100000000,
+        satoshis: sb.toSatoshi(e["value"]),
       };
     });
 
@@ -72,13 +70,17 @@ const createTransaction = async (to, amount, wif) => {
   const { privateKey, address } = importWIF(wif);
   const privKey = new bitcore.PrivateKey(privateKey, bitcore.Networks.testnet);
   const utxos = await fetchUtxo(address);
+  const value = sb.toSatoshi(amount);
+  const fee = await fetchFee();
 
   const transaction = new bitcore.Transaction()
     .from(utxos)
-    .to(to, amount * 10e8)
+    .to(to, value)
     .change(address)
-    .feePerKb(await fetchFee())
+    .feePerKb(fee)
     .sign(privKey);
+
+  console.log(transaction);
 
   if (transaction._inputAmount < transaction._outputAmount) {
     throw new Error("Insufficient Balance");
@@ -87,12 +89,9 @@ const createTransaction = async (to, amount, wif) => {
   }
 };
 
-const sendTransaction = async () => {
-  const wallet = await Wallet.findById("60ffc774cdc4410fa7f81cd0");
-  const wif = decryptPrivateKey(wallet.btcWallet.privateKey, "password");
-  const to = "mrpunUouGa5LB3pJj8B6zK9eCQ5FuPjW8e";
-  const value = "0.000002";
-
+const sendTransaction = async (userid, to, password, value) => {
+  const wallet = await Wallet.findOne({ user: userid });
+  const wif = decryptPrivateKey(wallet.btcWallet.privateKey, password);
   return await createTransaction(to, value, wif);
 };
 
@@ -109,6 +108,20 @@ const brodcastTransaction = async (trxHex) => {
 
     const data = res.data;
     return data.txid;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+export const sendBtc = async (userid, to, password, value) => {
+  if (!userid || !to || !value || !password) {
+    throw new Error("Invalid Data");
+  }
+
+  try {
+    const transaction = await sendTransaction(userid, to, password, value);
+    const trx = await brodcastTransaction(transaction);
+    return trx;
   } catch (e) {
     throw new Error(e.message);
   }
