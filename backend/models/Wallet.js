@@ -1,30 +1,40 @@
 import mongoose from "mongoose";
 
-const WalletSchema = mongoose.Schema({
-  user: {
-    ref: "User",
-    type: mongoose.Types.ObjectId,
+const WalletSchema = mongoose.Schema(
+  {
+    user: {
+      ref: "User",
+      type: mongoose.Types.ObjectId,
+    },
+    ethWallet: {
+      address: {
+        type: String,
+      },
+      privateKey: {
+        type: String,
+      },
+    },
+    bnbWallet: {
+      address: {
+        type: String,
+      },
+      privateKey: {
+        type: String,
+      },
+    },
+    btcWallet: {
+      address: {
+        type: String,
+      },
+      privateKey: {
+        type: String,
+      },
+    },
   },
-  ethWallet: {
-    address: {
-      type: String,
-    },
-    privateKey: {
-      type: String,
-    },
-  },
-  bnbWallet: {
-    address: {
-      type: String,
-    },
-    privateKey: {
-      type: String,
-    },
-  },
-},
-{
+  {
     timestamps: true,
-  });
+  }
+);
 
 //   @ MIDDLEWARES
 /*

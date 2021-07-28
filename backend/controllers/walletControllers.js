@@ -6,6 +6,7 @@ import {
   transferUSDT,
   userBalance,
 } from "../utils/wallet.js";
+import axios from "axios";
 
 import CoinGecko from "coingecko-api";
 import connectDB from "../connectDB.js";
@@ -20,10 +21,21 @@ export const getWallet = expressAsyncHandler(async (req, res) => {
   const busdBalance = await userBalance(user._id, "busd");
 
   const addresses = await Wallet.findOne({ user: user._id });
+
+  let btcBalance = "Error Fetching Balance";
+
+  try {
+    const btcData = await axios.get(
+      "https://chain.so/api/v2/get_address_balance/btctest/mnuNFddvNjbwmfbP3aqVGzVW89PGDDtDRF"
+    );
+
+    btcBalance = btcData.data.data["confirmed_balance"];
+  } catch {}
+
   let price = {};
   try {
     price = await CoinGeckoClient.simple.price({
-      ids: ["binancecoin", "binance-usd", "tether", "ethereum"],
+      ids: ["binancecoin", "binance-usd", "tether", "ethereum", "bitcoin"],
       vs_currencies: ["usd"],
     });
   } catch {
@@ -43,6 +55,14 @@ export const getWallet = expressAsyncHandler(async (req, res) => {
     };
   }
   const data = [
+    {
+      name: "bitcoin",
+      currency: "btc",
+      price: price.data?.bitcoin.usd,
+      balance: btcBalance,
+      usd: price.data?.bitcoin.usd * btcBalance,
+      address: addresses.btcWallet.address,
+    },
     {
       name: "ethereum",
       currency: "eth",

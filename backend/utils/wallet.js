@@ -5,14 +5,12 @@ import { decryptPrivateKey, encryptPrivateKey } from "./encryption.js";
 import { ERC20 } from "../contracts/contracts.js";
 import { BUSD_CONTRACT, USDT_CONTRACT } from "../Constants.js";
 import BigNumber from "bignumber.js";
-
-
+import { generateRandomAddress } from "./bitcoin.js";
 
 // constatnts
 
 const bnbRpc = "http://localhost:7545";
 const ethRpc = "http://localhost:7545";
-
 
 const web3 = new Web3(new Web3.providers.HttpProvider(ethRpc));
 const bnb = new Web3(new Web3.providers.HttpProvider(bnbRpc));
@@ -216,16 +214,22 @@ export const transferBUSD = async (userID, addressTo, password, amount) => {
 export const CreateWallet = async (userID, password) => {
   const ethWallet = web3.eth.accounts.wallet.create(1);
   const bnbWallet = bnb.eth.accounts.wallet.create(1);
+  const btcWallet = generateRandomAddress();
 
   const { address: ethAddress, privateKey: ethPrivateKey } = ethWallet[0];
   const { address: bnbAddress, privateKey: bnbPrivateKey } = bnbWallet[0];
   const encryptedEthPrivateKey = encryptPrivateKey(ethPrivateKey, password);
   const encryptedBnbPrivateKey = encryptPrivateKey(bnbPrivateKey, password);
+  const encryptedBtcPrivateKey = encryptPrivateKey(btcWallet.wif, password);
   const user = await User.findById(userID);
   const new_wallet = await Wallet.create({
     user: user._id,
     ethWallet: { address: ethAddress, privateKey: encryptedEthPrivateKey },
     bnbWallet: { address: bnbAddress, privateKey: encryptedBnbPrivateKey },
+    btcWallet: {
+      address: btcWallet.address,
+      privateKey: encryptedBtcPrivateKey,
+    },
   });
   return new_wallet;
 };

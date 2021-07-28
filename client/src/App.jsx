@@ -10,17 +10,12 @@ import NavBar from "./component/NavBar";
 import Admin from "./Screens/Admin";
 import Login from "./Screens/Login";
 import Register from "./Screens/Register";
-import Footer from "./component/Footer";
-import Trades from "./Screens/Trades";
-import TradeDetails from "./Screens/TradeDetails";
 import Send from "./Screens/Send";
 import Home from "./Screens/Home";
 import UserRoute from "./utils/user.routes";
 import AdminRoute from "./utils/admin.routes";
 import Receive from "./Screens/Receive";
 import { Toaster } from "react-hot-toast";
-import AdminTrades from "./Screens/AdminTrades";
-import AdminTradeDetails from "./Screens/AdminTradeDetails";
 import ForgotPassword from "./Screens/ForgotPassword";
 import Profile from "./Screens/Profile";
 import ResetPassword from "./Screens/ResetPassword";
@@ -37,19 +32,12 @@ function App() {
         <Switch>
           <UserRoute path="/wallet" exact component={Wallet} />
           <AdminRoute path="/admin" component={Admin} exact />
-          <AdminRoute path="/admin/trades/" component={AdminTrades} exact />
-          <AdminRoute
-            path="/admin/trades/:id"
-            component={AdminTradeDetails}
-            exact
-          />
+
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <Route path="/forgot-password" exact component={ForgotPassword} />
           <Route path="/password-reset/:code" exact component={ResetPassword} />
-          <UserRoute path="/trades" exact component={Trades} />
-          <UserRoute path="/trades/page/:page" exact component={Trades} />
-          <UserRoute path="/trades/:id" exact component={TradeDetails} />
+
           <UserRoute path="/send/:slug" exact component={Send} />
           <UserRoute path="/profile" exact component={Profile} />
           <UserRoute path="/receive/:slug" exact component={Receive} />
